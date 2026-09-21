@@ -1,64 +1,23 @@
 def fun_map(func_1, func_2, L):
-    '''
-    Returns a new list R where each element in R is func_1(i) if the index 
-    of i in L is divisible by 3, and func_2(i) otherwise.
-    R = [func_1(L[0]), func_2(L[1]), func_2(L[2]), func_1(L[3]), ...]
-
-    :param func_1: function to apply to elements at indices divisible by 3
-    :param func_2: function to apply to elements at other indices
-    :param L: list of elements
-    :return R: list of results
-    '''
-    # Fill in
-
-    pass
+     return list(map(lambda x: func_1(x[1]) if (x[0] % 3 == 0) else func_2(x[1]), enumerate(L)))
 
 def compose_map(func_1, func_2, L):
-    """
-    Returns a new list R where each element in R is fun2(fun1(i)) for the
-    corresponding element i in L
-    :param fun1: function
-    :param fun2: function
-    :param L: list
-    :return R: list
-    """
-    # Fill in-
-
-    pass
+    return list(map(lambda x: func_2(func_1(x)), L))
 
 def compose(func_1, func_2):
-    # Fill in
-    """
-    Returns a new function ret_fun. ret_fun should take a single input i, and return
-    fun1(fun2(i))
-    :param fun1: function
-    :param fun2: function
-    :return ret_fun: function
-    """
     def ret_fun(i):
-        # Fill in
-
-        pass
-
+        return func_1(func_2(i))
     return ret_fun
 
 def repeater(fun, num_repeats):
-    """
-    Returns a new function ret_fun. This takes in a list of functions `funlist` and a list of integers `num_repeats`, 
-    and returns a new function, `ret_fun`. The new function takes an input `x` and calls the 
-    first function in `funlist` repeated a number of times equal to the first number 
-    in the list `num_repeats`, and then calls the second function in `funlist` repeated 
-    a number of times equal to the second number in the list `num_repeats`, continuing this
-    pattern until the end of `funlist` is reached.
-    :param fun: list of functions
-    :param num_repeats: list of int
-    :return ret_fun: function
-    """
+
     def ret_fun(x):
-        # Fill in
-
-        pass
-
+        for i in range(len(fun)):
+            j = 0
+            while j < num_repeats[i]:
+                x = fun[i](x)
+                j += 1
+        return x
     return ret_fun
 
 if __name__ == '__main__':

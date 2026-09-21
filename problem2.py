@@ -1,48 +1,23 @@
 def stencil(data, f, width):
-    """
-    1) perform a stencil using the filter function f with 'width', on list data.
-    2) return the resulting list output.
-    3) note that if len(data) is k, len(output) would be k - width + 1.
-    4) f will accept input a list of size 'width' and return a single number.
+    stencil = []
 
-    :param data: list
-    :param f: function
-    :param width: int
-    :return output: list
-    """
-    # Fill in
-
-    pass
-
+    for i in range(len(data) - width + 1):
+        stencil.append(f(list(map(lambda x: x[1], filter(lambda x: x[0] >= i and x[0] < i + width, enumerate(data))))))
+        
+    return stencil
 
 def create_box(box):
-    """
-    1) This function takes in a list, box.
-    The box_filter function defined below accepts a list L of length len(box) and returns a simple
-    convolution of it with the list, box.
-
-    2) The meaning of this box filter is as follows:
-    for each element of input list L, multiply L[i] by box[len(box) - 1  - i],
-    sum the results of all of these multiplications and return the sum.
-
-    3) For a box of length 3, box_filter(L) should return:
-      (box[2] * L[0] + box[1] * L[1] + box[0] * L[2]),
-      similarly, for a box of length 4, box_filter should return:
-      (box[3] * L[0] + box[2] * L[1] + box[1] * L[2] + box[0] * L[3])
-
-    The function create_box returns the box_filter function, as well as the length
-    of the input list box
-
-    :param box: list
-    :return box_filter: function, len(box): int
-    """
-
-    # Fill in
-
+    
     def box_filter(L):
-        # Fill in
+        if len(box) != len(L):
+            print(f"Calling box filter with the wrong length list. Expected length of list should be {len(box)}.")
+            return 0
 
-        pass
+        b_sum = 0
+        for i in range(len(box)):
+            b_sum += box[i] * L[len(box) - i - 1]
+
+        return b_sum
 
     return box_filter, len(box)
 
